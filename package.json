@@ -1,0 +1,41 @@
+{
+  "name": "dibs-csg-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "clean": "rm -rf ./node_modules && npm cache clean",
+    "cleaninstall": "npm run clean && npm install",
+    "compile": "webpack",
+    "deploy": "npm install && webpack && rm -rf .npmtmp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheryly279/dibs-CSG-web.git"
+  },
+  "author": "cheryly279",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cheryly279/dibs-CSG-web/issues"
+  },
+  "homepage": "https://github.com/cheryly279/dibs-CSG-web#readme",
+  "dependencies": {
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "json-loader": "^0.5.4",
+    "react-hot-loader": "^1.3.1",
+    "webpack": "^1.14.0",
+    "webpack-dev-middleware": "^1.9.0",
+    "webpack-hot-middleware": "^2.13.2"
+  }
+}

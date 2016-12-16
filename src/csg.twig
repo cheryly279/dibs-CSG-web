@@ -1,0 +1,18 @@
+{% block title %}CSG{% endblock %}
+
+{% block style_head %}
+    {% parent %}
+    <link href="{{ '/dist/css/csg.css' }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+    <!-- where all page content will go -->
+    <div id='csg' data-tn="csg-home-page"></div>
+    <div class='loader'></div>
+{% endblock %}
+
+{% block script_foot_middle %}
+
+    <script type="text/javascript" src="{{ '/dist/app.js' }}"></script>
+
+{% endblock %}
