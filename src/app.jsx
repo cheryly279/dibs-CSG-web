@@ -7,9 +7,14 @@ import PreviewContainer from './react/containers/PreviewContainer'
 
 const store = createStore(rootReducer);
 
-render(
-    <Provider store={store}>
-        <PreviewContainer />
-    </Provider>,
-    document.getElementById('dibs-csg-web')
-);
+fetch('http://ec2-54-144-194-47.compute-1.amazonaws.com:8081/topics/all')
+    .then(response => {
+        return response.json();
+    }).then(json => {
+        render(
+            <Provider store={store}>
+                <PreviewContainer preLoadedTopics={json} />
+            </Provider>,
+            document.getElementById('dibs-csg-web')
+        );
+    });

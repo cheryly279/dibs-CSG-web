@@ -68,11 +68,15 @@
 
 	var store = (0, _redux.createStore)(_rootReducer2.default);
 
-	(0, _reactDom.render)(_react2.default.createElement(
-	    _reactRedux.Provider,
-	    { store: store },
-	    _react2.default.createElement(_PreviewContainer2.default, null)
-	), document.getElementById('dibs-csg-web'));
+	fetch('http://ec2-54-144-194-47.compute-1.amazonaws.com:8081/topics/all').then(function (response) {
+	    return response.json();
+	}).then(function (json) {
+	    (0, _reactDom.render)(_react2.default.createElement(
+	        _reactRedux.Provider,
+	        { store: store },
+	        _react2.default.createElement(_PreviewContainer2.default, { preLoadedTopics: json })
+	    ), document.getElementById('dibs-csg-web'));
+	});
 
 /***/ },
 /* 1 */
@@ -23858,27 +23862,25 @@
 	    function Preview(props) {
 	        _classCallCheck(this, Preview);
 
-	        var _this = _possibleConstructorReturn(this, (Preview.__proto__ || Object.getPrototypeOf(Preview)).call(this, props));
-
-	        fetch('http://ec2-54-144-194-47.compute-1.amazonaws.com:8081/topics/all').then(function (response) {
-	            return response.json();
-	        }).then(function (json) {
-	            props.topicsLoaded(json);
-	        });
-	        props.topicsLoading();
-	        return _this;
+	        return _possibleConstructorReturn(this, (Preview.__proto__ || Object.getPrototypeOf(Preview)).call(this, props));
+	        // fetch('http://ec2-54-144-194-47.compute-1.amazonaws.com:8081/topics/all')
+	        //     .then(response => {
+	        //         return response.json();
+	        //     }).then(json => {
+	        //         props.topicsLoaded(json);
+	        //     });
+	        // props.topicsLoading();
 	    }
 
 	    _createClass(Preview, [{
 	        key: 'render',
 	        value: function render() {
-	            console.log('!!!');
-	            console.log(this.props.topics);
+	            console.log(this.props.preLoadedTopics);
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                'here we go again! loading: ',
-	                this.props.loading ? 'loading...' : 'loaded!'
+	                'here we go again! topic_count: ',
+	                this.props.preLoadedTopics.length
 	            );
 	        }
 	    }]);
@@ -23888,6 +23890,7 @@
 
 	Preview.propTypes = {
 	    loading: _react2.default.PropTypes.bool,
+	    preLoadedTopics: _react2.default.PropTypes.array,
 	    topics: _react2.default.PropTypes.array,
 	    topicsLoading: _react2.default.PropTypes.func,
 	    topicsLoaded: _react2.default.PropTypes.func

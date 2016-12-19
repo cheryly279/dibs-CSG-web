@@ -8,6 +8,7 @@ app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 
 app.get('/', function (req, res) {
+    
     res.render(path.resolve(publicPath, 'index.html'));
 });
 
