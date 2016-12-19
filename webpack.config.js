@@ -1,27 +1,31 @@
 const webpack = require('webpack');
 const path = require('path');
+const buildPath = path.resolve(__dirname, 'public', 'build');
+const mainPath = path.resolve(__dirname, 'src', 'app.jsx');
 
 module.exports = {
-    context: __dirname + "/src",
-
-    entry: "./js/app.jsx",
-
+    entry: mainPath,
     output: {
-        filename: "app.js",
-        path: __dirname + "/dist"
+        path: buildPath,
+        filename: `bundle.js`,
+        publicPath: '/build/'
     },
-
     resolve: {
-        root: path.resolve(__dirname, './src'),
+        root: path.resolve(__dirname, 'src'),
         extensions: ['', '.js', '.jsx', '.json']
     },
-
     module: {
         loaders: [
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loaders: ["babel-loader"]
+                loader: require.resolve("babel-loader"),
+                query: {
+                    presets: [
+                        'babel-preset-es2015',
+                        'babel-preset-react'
+                    ].map(require.resolve)
+                }
             },
             {
                 test: /\.json$/,
