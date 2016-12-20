@@ -23874,16 +23874,37 @@
 	                topicMarkup = preLoadedTopics.map(function (currTopic, index) {
 	                    var topicKey = currTopic.id + '_' + index;
 	                    var topicDesc = new Buffer(currTopic.description || '');
+	                    var urlMarkup = void 0;
+
+	                    if (currTopic.url) {
+	                        urlMarkup = _react2.default.createElement(
+	                            'div',
+	                            null,
+	                            'url: ',
+	                            _react2.default.createElement(
+	                                'a',
+	                                { href: currTopic.url },
+	                                currTopic.url
+	                            )
+	                        );
+	                    }
+
 	                    return _react2.default.createElement(
 	                        'div',
 	                        { key: topicKey },
 	                        _react2.default.createElement(
-	                            'strong',
+	                            'div',
 	                            null,
-	                            currTopic.name
+	                            _react2.default.createElement(
+	                                'strong',
+	                                null,
+	                                currTopic.name
+	                            ),
+	                            ': ',
+	                            topicDesc.toString('utf8')
 	                        ),
-	                        ': ',
-	                        topicDesc.toString('utf8')
+	                        urlMarkup,
+	                        _react2.default.createElement('br', null)
 	                    );
 	                });
 	            }

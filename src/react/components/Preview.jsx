@@ -11,9 +11,21 @@ class Preview extends React.Component {
             topicMarkup = preLoadedTopics.map((currTopic, index) => {
                 const topicKey = `${currTopic.id}_${index}`;
                 const topicDesc = new Buffer(currTopic.description || '');
+                let urlMarkup;
+
+                if (currTopic.url) {
+                    urlMarkup = (
+                            <div>
+                                url: <a href={currTopic.url}>{currTopic.url}</a>
+                            </div>
+                    );
+                }
+
                 return (
                     <div key={topicKey}>
-                        <strong>{currTopic.name}</strong>: {topicDesc.toString('utf8')}
+                        <div><strong>{currTopic.name}</strong>: {topicDesc.toString('utf8')}</div>
+                        {urlMarkup}
+                        <br />
                     </div>
                 );
             });
