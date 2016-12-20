@@ -3,18 +3,27 @@ import React, { PropTypes } from 'react'
 class Preview extends React.Component {
     constructor(props) {
         super(props);
-        // fetch('http://ec2-54-144-194-47.compute-1.amazonaws.com:8081/topics/all')
-        //     .then(response => {
-        //         return response.json();
-        //     }).then(json => {
-        //         props.topicsLoaded(json);
-        //     });
-        // props.topicsLoading();
     }
     render() {
-        console.log(this.props.preLoadedTopics);
+        const preLoadedTopics = this.props.preLoadedTopics;
+        let topicMarkup;
+        if (preLoadedTopics && preLoadedTopics.length) {
+            topicMarkup = preLoadedTopics.map((currTopic, index) => {
+                const topicKey = `${currTopic.id}_${index}`;
+                const topicDesc = new Buffer(currTopic.description || '');
+                return (
+                    <div key={topicKey}>
+                        <strong>{currTopic.name}</strong>: {topicDesc.toString('utf8')}
+                    </div>
+                );
+            });
+        }
+
         return (
-            <div>here we go again! topic_count: {this.props.preLoadedTopics.length}</div>
+            <div>
+                <div>Pending Topics:</div><br />
+                {topicMarkup}
+            </div>
         );
     }
 }
