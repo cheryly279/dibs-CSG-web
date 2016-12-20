@@ -68,7 +68,7 @@
 
 	var store = (0, _redux.createStore)(_rootReducer2.default);
 
-	fetch('http://ec2-54-144-194-47.compute-1.amazonaws.com:8081/topics/all').then(function (response) {
+	fetch('http://ec2-54-144-194-47.compute-1.amazonaws.com:8081/topics/pending').then(function (response) {
 	    return response.json();
 	}).then(function (json) {
 	    (0, _reactDom.render)(_react2.default.createElement(
