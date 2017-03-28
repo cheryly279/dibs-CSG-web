@@ -7,7 +7,7 @@ import PreviewContainer from './react/containers/PreviewContainer'
 
 const store = createStore(rootReducer);
 
-fetch('http://ec2-54-144-194-47.compute-1.amazonaws.com:8081/topics/pending')
+fetch('http://localhost:8081/topics/pending')
     .then(response => {
         return response.json();
     }).then(json => {
